@@ -12,7 +12,7 @@ SCENARIO("add")
 {
 	RBtree <int> a;
 	a.Insert(5);
-	REQUIRE(!a.IsEmpty());
+	REQUIRE(!a.isEmpty());
 }
 SCENARIO("BST delete non inserted element", "[delete]")
 { 
