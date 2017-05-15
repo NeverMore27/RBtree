@@ -27,7 +27,7 @@ private:
 	}
 	void DelNode(node_st*);
 	void Clean(node_st*);
-	node_st* Rotate21(node_st* node) //по часовой
+	node_st* Rotate21(node_st* node) 
 	{
 		node_st *right = node->right;
 		node_st *root_st = right->left;
@@ -57,17 +57,13 @@ private:
 public:
 	bool isEmpty()
 	{
-		node* root1 = nullptr;
+		node_st* root1 = nullptr;
 		return isEqual(tree_root, root1);
-	}
-	bool Get_Color()
-	{
-		return red;
 	}
 	void Show(ostream &out) const;
 	RBtree(std::initializer_list<T> list)
 	{
-		root = nullptr;
+		tree_root = nullptr;
 		for (auto& item : list)
 		{
 			Insert(item);
@@ -155,7 +151,7 @@ void RBtree<T>::BalanceInsert(node_st **root)
 		if (lx1 && lx1->red) {
 			node->red = true;
 			left->red = false;
-			if (right && right->red) {	// отделаемся перекраской вершин
+			if (right && right->red) {	
 				lx1->red = true;
 				right->red = false;
 				return;
@@ -164,7 +160,7 @@ void RBtree<T>::BalanceInsert(node_st **root)
 			return;
 		}
 	}
-	// тоже самое в другую сторону
+	
 	if (right && right->red) {
 		lx1 = right->left;
 		if (lx1 && lx1->red) right = node->right = Rotate12(right);
@@ -172,7 +168,7 @@ void RBtree<T>::BalanceInsert(node_st **root)
 		if (rx1 &&rx1->red) {
 			node->red = true;
 			right->red = false;
-			if (left && left->red) {	// отделаемся перекраской вершин
+			if (left && left->red) {	
 				rx1->red = true;
 				left->red = false;
 				return;
