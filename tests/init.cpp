@@ -11,8 +11,8 @@ SCENARIO("null")
 SCENARIO("add") 
 {
 	RBtree <int> a;
-	bool b=a.Insert(5);
-	REQUIRE(b == 1);
+	a.Insert(5);
+	REQUIRE(!a.IsEmpty);
 }
 SCENARIO("BST delete non inserted element", "[delete]")
 { 
@@ -23,7 +23,7 @@ SCENARIO("BST delete non inserted element", "[delete]")
 SCENARIO("BST delete root with one element", "[delete]") 
 { 
 	RBtree<int> tree = {8}; 
-	REQUIRE( tree.del(8) ); 
+	REQUIRE( tree.Remove(8) ); 
 	REQUIRE( tree.isEmpty() ); 
 } 
 SCENARIO("BST delete root without child", "[delete]") 
