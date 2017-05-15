@@ -51,6 +51,6 @@ SCENARIO("BST delete non root with one child", "[delete]")
 {
 	RBtree<int> tree = { 8, 4, 3, 10, 9, 13, 11, 12 };
 	tree.Remove(12);
-	RBtree<int> tr ={ 9,  4, 11, 10, 4, 13, 8 }
+	RBtree<int> tr ={ 9,  4, 11, 10, 4, 13, 8 };
 	REQUIRE(tree == tr);
 }
