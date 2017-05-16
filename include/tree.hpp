@@ -87,7 +87,7 @@ public:
 template <class T>
 RBtree<T>::RBtree()
 {
-	tree_root = 0;
+	tree_root = nullptr;
 	nodes_count = 0;
 }
 template <class T>
