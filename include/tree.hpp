@@ -34,7 +34,7 @@ private:
 
 public:
 	bool isEmpty();
-	void Show(ostream &out) const;
+	void Show(std::ostream &out) const;
 	RBtree(std::initializer_list<std::pair<T, keyT>> list);
 	RBtree();
 	~RBtree();
@@ -343,7 +343,7 @@ int RBtree<T, keyT, Compare>::GetNodesCount() const
 }
 
 template <class T, class keyT>
-void node_st<T, keyT>::Show(ostream &out, int level) const
+void node_st<T, keyT>::Show(std::ostream &out, int level) const
 {
 	const node_st<T, keyT>*tr = this;
 
