@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 
 template <class T, class keyT>
 struct node_st
