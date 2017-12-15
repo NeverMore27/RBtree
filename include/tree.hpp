@@ -300,7 +300,7 @@ bool RBtree<T, keyT, Compare>::isEqual(node_st<T, keyT>* root2, const node_st<T,
 template <class T, class keyT, class Compare>
 bool RBtree<T, keyT, Compare>::isEmpty()
 {
-	node_st* root1 = nullptr;
+	node_st<T, keyT>* root1 = nullptr;
 	return isEqual(tree_root, root1);
 }
 
