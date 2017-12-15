@@ -297,7 +297,7 @@ bool RBtree<T, keyT, Compare>::isEqual(node_st<T, keyT>* root2, const node_st<T,
 	return (root2&&root1 ? root2->value == root1->value&& root2->key == root1->key&&isEqual(root2->left, root1->left) && isEqual(root2->right, root1->right) : !root2 && !root1);
 };
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare>
 bool RBtree<T, keyT, Compare>::isEmpty()
 {
 	node_st* root1 = nullptr;
