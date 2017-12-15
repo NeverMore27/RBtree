@@ -358,7 +358,7 @@ void node_st<T, keyT>::Show(std::ostream &out, int level) const
 		out << tr->value<<" "<<tr->key << "\n";
 		for (int i = 0; i<level; i++)
 			out << "   ";
-		out << is_red << endl;
+		out << is_red <<std::endl;
 	}
 	else out << "End" << endl;
 	if (tr) tr->left->Show(out, level + 1);
