@@ -18,7 +18,7 @@ class RBtree
 	int nodes_count;
 	Compare* comp_;
 private:
-	node_st <T, keyT>* NewNode(T, keyT);
+	node_st <T, keyT>* NewNode(T value, keyT key);
 	void DelNode(node_st<T, keyT>*);
 	void Clean(node_st<T, keyT>*);
 	node_st <T, keyT>* Rotate21(node_st<T, keyT>* node);
