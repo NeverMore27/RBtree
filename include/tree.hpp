@@ -50,7 +50,7 @@ public:
 	}
 };
 
-template <class T, class keyT, class Compare = std::less<keyT>>
+template <class T, class keyT, class Compare>
 node_st <T, keyT>* RBtree<T, keyT, Compare>::NewNode(T value, keyT key)
 {
 	node_st <T, keyT> * node = new node_st <T, keyT>;
