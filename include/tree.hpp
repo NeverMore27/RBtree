@@ -360,7 +360,7 @@ void node_st<T, keyT>::Show(std::ostream &out, int level) const
 			out << "   ";
 		out << is_red <<std::endl;
 	}
-	else out << "End" << endl;
+	else out << "End" << std::endl;
 	if (tr) tr->left->Show(out, level + 1);
 }
 
