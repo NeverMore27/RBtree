@@ -7,7 +7,7 @@ struct node_st
 	T value;
 	keyT key;
 	bool red;
-	void Show(ostream &out, int level) const;
+	void Show(std::ostream &out, int level) const;
 };
 
 
@@ -50,7 +50,7 @@ public:
 	}
 };
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 node_st <T, keyT>* RBtree<T, keyT, Compare>::NewNode(T value, keyT key)
 {
 	node_st <T, keyT> * node = new node_st <T, keyT>;
@@ -63,14 +63,14 @@ node_st <T, keyT>* RBtree<T, keyT, Compare>::NewNode(T value, keyT key)
 	return node;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::DelNode(node_st<T, keyT>* node)
 {
 	nodes_count--;
 	delete node;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::Clean(node_st <T, keyT> *node)
 {
 	if (!node) return;
@@ -79,7 +79,7 @@ void RBtree<T, keyT, Compare>::Clean(node_st <T, keyT> *node)
 	DelNode(node);
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 node_st<T, keyT>* RBtree<T, keyT, Compare>:: Rotate21(node_st<T, keyT>* node)
 {
 	node_st <T, keyT> *right = node->right;
@@ -89,7 +89,7 @@ node_st<T, keyT>* RBtree<T, keyT, Compare>:: Rotate21(node_st<T, keyT>* node)
 	return right;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 node_st<T, keyT>* RBtree<T, keyT, Compare>::Rotate12(node_st<T, keyT>* node)
 {
 	node_st <T, keyT> *left = node->left;
@@ -99,7 +99,7 @@ node_st<T, keyT>* RBtree<T, keyT, Compare>::Rotate12(node_st<T, keyT>* node)
 	return left;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::BalanceInsert(node_st<T, keyT> **root)
 {
 	node_st <T, keyT> *left, *right, *lx1, *rx1;
@@ -143,7 +143,7 @@ void RBtree<T, keyT, Compare>::BalanceInsert(node_st<T, keyT> **root)
 	}
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 bool  RBtree<T, keyT, Compare>::BalanceRemove1(node_st<T, keyT>  **root)
 {
 	node_st<T, keyT>  *node = *root;
@@ -187,7 +187,7 @@ bool  RBtree<T, keyT, Compare>::BalanceRemove1(node_st<T, keyT>  **root)
 	return false;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 bool  RBtree<T, keyT, Compare>::BalanceRemove2(node_st<T, keyT>  **root)
 {
 	node_st<T, keyT> *node = *root;
@@ -228,7 +228,7 @@ case 1:
 return false;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 bool  RBtree<T, keyT, Compare>::Insert(T &value, keyT &key, node_st<T, keyT>  **root)
 {
 	node_st <T, keyT> *node = *root;
@@ -242,7 +242,7 @@ bool  RBtree<T, keyT, Compare>::Insert(T &value, keyT &key, node_st<T, keyT>  **
 	return false;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 bool  RBtree<T, keyT, Compare>::GetMin(node_st<T, keyT>  **root, node_st<T, keyT>  **res)
 {
 	node_st<T, keyT>  *node = *root;
@@ -257,7 +257,7 @@ bool  RBtree<T, keyT, Compare>::GetMin(node_st<T, keyT>  **root, node_st<T, keyT
 	return false;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 bool  RBtree<T, keyT, Compare>::Remove(node_st<T, keyT>  **root, keyT &key)
 {
 	node_st<T, keyT> *t, *node = *root;
@@ -291,7 +291,7 @@ bool  RBtree<T, keyT, Compare>::Remove(node_st<T, keyT>  **root, keyT &key)
 	return 0;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 bool RBtree<T, keyT, Compare>::isEqual(node_st<T, keyT>* root2, const node_st<T, keyT>* root1)
 {
 	return (root2&&root1 ? root2->value == root1->value&& root2->key == root1->key&&isEqual(root2->left, root1->left) && isEqual(root2->right, root1->right) : !root2 && !root1);
@@ -304,13 +304,13 @@ bool RBtree<T, keyT, Compare>::isEmpty()
 	return isEqual(tree_root, root1);
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
-void RBtree<T, keyT, Compare>::Show(ostream &out) const
+template <class T, class keyT, class Compare = std::less<keyT>>
+void RBtree<T, keyT, Compare>::Show(std::ostream &out) const
 {
 	tree_root->Show(out, 0);
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 RBtree<T, keyT, Compare>::RBtree(std::initializer_list<std::pair<T, keyT>> list)
 {
 	tree_root = nullptr;
@@ -322,7 +322,7 @@ RBtree<T, keyT, Compare>::RBtree(std::initializer_list<std::pair<T, keyT>> list)
 	}
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 RBtree<T, keyT, Compare>::RBtree()
 {
 	comp_ = new Compare();
@@ -331,12 +331,12 @@ RBtree<T, keyT, Compare>::RBtree()
 }
 
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 RBtree<T, keyT, Compare>::~RBtree()
 {
 	Clean(tree_root);
 }
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 int RBtree<T, keyT, Compare>::GetNodesCount() const
 {
 	return nodes_count;
@@ -364,27 +364,27 @@ void node_st<T, keyT>::Show(ostream &out, int level) const
 	if (tr) tr->left->Show(out, level + 1);
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::Insert(T value, keyT key)
 {
 	Insert(value, key, &tree_root);
 	if (tree_root) tree_root->red = false;
 }	
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::Remove(keyT key)
 {
 	Remove(&tree_root, key);
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::Clean()
 {
 	Clean(tree_root);
 	tree_root = nullptr;
 }
 
-template <class T, class keyT, class Compare = std::less<Ty>>
+template <class T, class keyT, class Compare = std::less<keyT>>
 node_st<T, keyT>* RBtree<T, keyT, Compare>::search(const keyT& k) const
 {
 	node_st<T, keyT> * tr = tree_root;
@@ -403,255 +403,10 @@ node_st<T, keyT>* RBtree<T, keyT, Compare>::search(const keyT& k) const
 };
 
 
-template<class T, class keyT, class Compare = std::less<Ty>>
+template<class T, class keyT, class Compare = std::less<keyT>>
 void RBtree<T, keyT, Compare>::swap(RBtree<T, keyT, Compare> & other)
 {
 	std::swap(tree_root, other.tree_root);
 	std::swap(nodes_count, other.nodes_count);
 	std::swap(comp_, other.comp_);
 };
-template <class T>
-int RBtree<T>::GetNodesCount() const
-{
-	return nodes_count;
-}
-template <class T>
-void RBtree<T>::DelNode(node_st *node)
-{
-	nodes_count--;
-	delete node;
-}
-template <class T>
-void RBtree<T>::Clean(node_st *node)
-{
-	if (!node) return;
-	Clean(node->left);
-	Clean(node->right);
-	DelNode(node);
-}
-template <class T>
-void RBtree<T>::node_st::Show(ostream &out, int level) const
-{
-	const node_st *tr = this;
-
-	if (tr) tr->right->Show(out, level + 1);
-	for (int i = 0; i<level; i++)
-		out << "   ";
-
-	if (tr)
-	{
-		char *is_red = "black";
-		if (red) is_red = "red";
-		out << tr->value << "\n";
-		for (int i = 0; i<level; i++)
-			out << "   ";
-		out << is_red << endl;
-	}
-	else out << "End" << endl;
-	if (tr) tr->left->Show(out, level + 1);
-}
-template <class T>
-void RBtree<T>::BalanceInsert(node_st **root)
-{
-	node_st *left, *right, *lx1, *rx1;
-	node_st *node = *root;
-	if (node->red) return;
-	left = node->left;
-	right = node->right;
-	if (left && left->red)
-	{
-		rx1 = left->right;
-		if (rx1 && rx1->red) left = node->left = Rotate21(left);
-		lx1 = left->left;
-		if (lx1 && lx1->red) {
-			node->red = true;
-			left->red = false;
-			if (right && right->red) {	
-				lx1->red = true;
-				right->red = false;
-				return;
-			}
-			*root = Rotate12(node);
-			return;
-		}
-	}
-	
-	if (right && right->red) {
-		lx1 = right->left;
-		if (lx1 && lx1->red) right = node->right = Rotate12(right);
-		rx1 = right->right;
-		if (rx1 &&rx1->red) {
-			node->red = true;
-			right->red = false;
-			if (left && left->red) {	
-				rx1->red = true;
-				left->red = false;
-				return;
-			}
-			*root = Rotate21(node);
-			return;
-		}
-	}
-}
-template <class T>
-bool RBtree<T>::BalanceRemove1(node_st **root)
-{
-	node_st *node = *root;
-	node_st *left = node->left;
-	node_st *right = node->right;
-	if (left && left->red)
-	{
-		left->red = false;
-		return false;
-	}
-	if (right && right->red)
-	{
-		node->red = true;
-		right->red = false;
-		node = *root = Rotate21(node);
-		if (BalanceRemove1(&node->left)) node->left->red = false;
-		return false;
-	}
-
-	unsigned int mask = 0;
-	node_st *p21 = right->left;
-	node_st *p22 = right->right;
-	if (p21 && p21->red) mask |= 1;
-	if (p22 && p22->red) mask |= 2;
-	switch (mask)
-	{
-	case 0:
-		right->red = true;
-		return true;
-	case 1:
-	case 3:
-		right->red = true;
-		p21->red = false;
-		right = node->right = Rotate12(right);
-		p22 = right->right;
-	case 2:
-		right->red = node->red;
-		p22->red = node->red = false;
-		*root = Rotate21(node);
-	}
-	return false;
-}
-template <class T>
-bool RBtree<T>::BalanceRemove2(node_st **root)
-{
-	node_st *node = *root;
-	node_st *left = node->left;
-	node_st *right = node->right;
-	if (right && right->red)
-	{
-		right->red = false;
-		return false;
-	}
-	if (left && left->red) {
-		node->red = true;
-		left->red = false;
-		node = *root = Rotate12(node);
-		if (BalanceRemove2(&node->right)) node->right->red = false;
-		return false;
-	}
-	unsigned int mask = 0;
-	node_st *p11 = left->left;
-	node_st *p12 = left->right;
-	if (p11 && p11->red) mask |= 1;
-	if (p12 && p12->red) mask |= 2;
-	switch (mask) {
-	case 0:
-		left->red = true;
-		return true;
-	case 2:
-	case 3:
-		left->red = true;
-		p12->red = false;
-		left = node->left = Rotate21(left);
-		p11 = left->left;
-	case 1:
-		left->red = node->red;
-		p11->red = node->red = false;
-		*root = Rotate12(node);
-	}
-	return false;
-}
-template <class T>
-bool RBtree<T>::Insert(T &value, node_st **root)
-{
-	node_st *node = *root;
-	if (!node) *root = NewNode(value);
-	else {
-		if (value == node->value) return true;
-		if (Insert(value, value<node->value ? &node->left : &node->right)) return true;
-		BalanceInsert(root);
-	}
-	return false;
-}
-template <class T>
-bool RBtree<T>::GetMin(node_st **root, node_st **res)
-{
-	node_st *node = *root;
-	if (node->left) {
-		if (GetMin(&node->left, res)) return BalanceRemove1(root);
-	}
-	else {
-		*root = node->right;
-		*res = node;
-		return !node->red;
-	}
-	return false;
-}
-template <class T>
-bool RBtree<T>::Remove(node_st **root, T &value)
-{
-	node_st *t, *node = *root;
-	if (!node) return false;
-	if (node->value<value) {
-		if (Remove(&node->right, value))
-			return BalanceRemove2(root);
-	}
-	else if (node->value>value) {
-		if (Remove(&node->left, value))	return BalanceRemove1(root);
-	}
-	else {
-		bool res;
-		if (!node->right) {
-			*root = node->left;
-			res = !node->red;
-		}
-		else {
-			res = GetMin(&node->right, root);
-			t = *root;
-			t->red = node->red;
-			t->left = node->left;
-			t->right = node->right;
-			if (res) res = BalanceRemove2(root);
-		}
-		DelNode(node);
-		return res;
-	}
-	return 0;
-}
-template <class T>
-void RBtree<T>::Show(ostream &out) const
-{
-	tree_root->Show(out, 0);
-}
-template <class T>
-void RBtree<T>::Insert(T value)
-{
-	Insert(value, &tree_root);
-	if (tree_root) tree_root->red = false;
-}
-template <class T>
-void RBtree<T>::Remove(T value)
-{
-	Remove(&tree_root, value);
-}
-template <class T>
-void RBtree<T>::Clean()
-{
-	Clean(tree_root);
-	tree_root = nullptr;
-}
