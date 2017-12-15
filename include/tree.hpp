@@ -11,6 +11,7 @@ struct node_st
 };
 
 
+
 template <class T, class keyT, class Compare = std::less<keyT>>
 class RBtree
 {
